@@ -4,11 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Appointment extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, SoftDeletes;
+
+    protected $table = 'appointments';
+    protected $primaryKey = 'appointment_id';
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     protected $fillable = [
         'property_id',
@@ -19,10 +24,13 @@ class Appointment extends Model
         'status',
         'notes',
         'source',
+        'created_by',
+        'updated_by',
+        'deleted_by'
     ];
 
     public function property()
     {
-        return $this->belongsTo(Property::class);
+        return $this->belongsTo(Property::class, 'property_id', 'property_id');
     }
 }

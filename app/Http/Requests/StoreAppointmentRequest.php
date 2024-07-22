@@ -14,7 +14,7 @@ class StoreAppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'property_id' => 'required|exists:properties,id',
+            'property_id' => 'required|exists:properties,property_id',
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',

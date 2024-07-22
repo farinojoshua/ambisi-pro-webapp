@@ -8,23 +8,26 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreDeveloperRequest;
 use App\Http\Requests\UpdateDeveloperRequest;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class DeveloperController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (request()->ajax()) {
+        if ($request->ajax()) {
             $query = Developer::query();
 
             return DataTables::of($query)
+                ->addIndexColumn()
                 ->addColumn('action', function ($developer) {
                     return '
                         <div class="flex gap-2">
                         <a class="block w-full px-2 py-1 mb-1 text-xs text-center text-white transition duration-500 bg-gray-700 border border-gray-700 rounded-md select-none ease hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                            href="' . route('admin.developers.edit', $developer->id) . '">
+                            href="' . route('admin.developers.edit', $developer->developer_id) . '">
                             Edit
                         </a>
-                        <form class="block w-full" action="' . route('admin.developers.destroy', $developer->id) . '" method="POST">
+                        <form class="block w-full" action="' . route('admin.developers.destroy', $developer->developer_id) . '" method="POST">
                             <button class="w-full px-2 py-1 text-xs text-white transition duration-500 bg-red-500 border border-red-500 rounded-md select-none btn-delete ease hover:bg-red-600 focus:outline-none focus:shadow-outline">
                                 Delete
                             </button>
@@ -46,7 +49,12 @@ class DeveloperController extends Controller
 
     public function store(StoreDeveloperRequest $request)
     {
-        $developer = Developer::create($request->validated());
+        $validatedData = $request->validated();
+        $validatedData['developer_id'] = (string) Str::uuid();
+        $validatedData['created_by'] = Auth::user()->name;
+        $validatedData['updated_by'] = Auth::user()->name;
+
+        Developer::create($validatedData);
 
         return redirect()->route('admin.developers.index')->with('success', 'Developer created successfully.');
     }
@@ -58,13 +66,18 @@ class DeveloperController extends Controller
 
     public function update(UpdateDeveloperRequest $request, Developer $developer)
     {
-        $developer->update($request->validated());
+        $validatedData = $request->validated();
+        $validatedData['updated_by'] = Auth::user()->name;
+
+        $developer->update($validatedData);
 
         return redirect()->route('admin.developers.index')->with('success', 'Developer updated successfully.');
     }
 
     public function destroy(Developer $developer)
     {
+        $developer->deleted_by = Auth::user()->name;
+        $developer->save();
         $developer->delete();
 
         return redirect()->route('admin.developers.index')->with('success', 'Developer deleted successfully.');

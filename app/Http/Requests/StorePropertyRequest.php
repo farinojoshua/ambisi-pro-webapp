@@ -14,7 +14,7 @@ class StorePropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'developer_id' => 'required|exists:developers,id',
+            'developer_id' => 'required|exists:developers,developer_id',
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'photo_url' => 'required|url|max:255',
@@ -30,10 +30,13 @@ class StorePropertyRequest extends FormRequest
             'material_floor' => 'nullable|string',
             'dining_room' => 'nullable|string|max:255',
             'living_room' => 'nullable|string|max:255',
-            'facilities' => 'nullable|json',
-            'nearby_locations' => 'nullable|json',
+            'facilities' => 'nullable|array',
+            'facilities.*' => 'nullable|string|max:255',
+            'nearby_locations' => 'nullable|array',
+            'nearby_locations.*' => 'nullable|string|max:255',
             'video_url' => 'nullable|url|max:255',
             'whatsapp_message' => 'nullable|string',
+            'status' => 'required|in:ACTIVE,INACTIVE',
         ];
     }
 }

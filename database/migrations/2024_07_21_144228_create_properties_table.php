@@ -6,13 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('properties', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('property_id')->primary();
             $table->uuid('developer_id');
             $table->string('name');
             $table->string('location');
@@ -33,15 +30,17 @@ return new class extends Migration
             $table->json('nearby_locations')->nullable();
             $table->string('video_url')->nullable();
             $table->text('whatsapp_message')->nullable();
+            $table->string('created_by');
+            $table->string('updated_by');
+            $table->string('deleted_by')->nullable();
+            $table->string('status')->default('ACTIVE');
             $table->timestamps();
+            $table->softDeletes();
 
-            $table->foreign('developer_id')->references('id')->on('developers')->onDelete('cascade');
+            $table->foreign('developer_id')->references('developer_id')->on('developers')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('properties');

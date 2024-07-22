@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (request()->ajax()) {
+        if ($request->ajax()) {
             $query = Appointment::with('property');
 
             return DataTables::of($query)
@@ -25,10 +27,10 @@ class AppointmentController extends Controller
                     return '
                         <div class="flex gap-2">
                         <a class="block w-full px-2 py-1 mb-1 text-xs text-center text-white transition duration-500 bg-gray-700 border border-gray-700 rounded-md select-none ease hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                            href="' . route('admin.appointments.edit', $appointment->id) . '">
+                            href="' . route('admin.appointments.edit', $appointment->appointment_id) . '">
                             Edit
                         </a>
-                        <form class="block w-full" action="' . route('admin.appointments.destroy', $appointment->id) . '" method="POST">
+                        <form class="block w-full" action="' . route('admin.appointments.destroy', $appointment->appointment_id) . '" method="POST">
                             <button class="w-full px-2 py-1 text-xs text-white transition duration-500 bg-red-500 border border-red-500 rounded-md select-none btn-delete ease hover:bg-red-600 focus:outline-none focus:shadow-outline">
                                 Delete
                             </button>
@@ -51,7 +53,12 @@ class AppointmentController extends Controller
 
     public function store(StoreAppointmentRequest $request)
     {
-        $appointment = Appointment::create($request->validated());
+        $validatedData = $request->validated();
+        $validatedData['appointment_id'] = (string) Str::uuid();
+        $validatedData['created_by'] = Auth::user()->name;
+        $validatedData['updated_by'] = Auth::user()->name;
+
+        Appointment::create($validatedData);
 
         return redirect()->route('admin.appointments.index')->with('success', 'Appointment created successfully.');
     }
@@ -64,13 +71,18 @@ class AppointmentController extends Controller
 
     public function update(UpdateAppointmentRequest $request, Appointment $appointment)
     {
-        $appointment->update($request->validated());
+        $validatedData = $request->validated();
+        $validatedData['updated_by'] = Auth::user()->name;
+
+        $appointment->update($validatedData);
 
         return redirect()->route('admin.appointments.index')->with('success', 'Appointment updated successfully.');
     }
 
     public function destroy(Appointment $appointment)
     {
+        $appointment->deleted_by = Auth::user()->name;
+        $appointment->save();
         $appointment->delete();
 
         return redirect()->route('admin.appointments.index')->with('success', 'Appointment deleted successfully.');

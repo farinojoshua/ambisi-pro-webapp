@@ -4,13 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Property extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, SoftDeletes;
+
+    protected $table = 'properties';
+    protected $primaryKey = 'property_id';
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     protected $fillable = [
+        'property_id',
         'developer_id',
         'name',
         'location',
@@ -31,6 +37,10 @@ class Property extends Model
         'nearby_locations',
         'video_url',
         'whatsapp_message',
+        'created_by',
+        'updated_by',
+        'deleted_by',
+        'status'
     ];
 
     protected $casts = [
@@ -40,11 +50,11 @@ class Property extends Model
 
     public function developer()
     {
-        return $this->belongsTo(Developer::class);
+        return $this->belongsTo(Developer::class, 'developer_id', 'developer_id');
     }
 
     public function appointments()
     {
-        return $this->hasMany(Appointment::class);
+        return $this->hasMany(Appointment::class, 'property_id', 'property_id');
     }
 }

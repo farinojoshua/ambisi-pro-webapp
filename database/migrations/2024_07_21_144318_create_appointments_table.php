@@ -6,13 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('appointments', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('appointment_id')->primary();
             $table->uuid('property_id');
             $table->string('name');
             $table->string('email');
@@ -21,15 +18,16 @@ return new class extends Migration
             $table->string('status');
             $table->text('notes')->nullable();
             $table->string('source');
+            $table->string('created_by');
+            $table->string('updated_by');
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
-            $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
+            $table->foreign('property_id')->references('property_id')->on('properties')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('appointments');

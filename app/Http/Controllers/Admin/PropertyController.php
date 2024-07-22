@@ -9,15 +9,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (request()->ajax()) {
+        if ($request->ajax()) {
             $query = Property::with('developer');
 
             return DataTables::of($query)
+                ->addIndexColumn()
                 ->addColumn('developer_name', function ($property) {
                     return $property->developer->name;
                 })
@@ -25,10 +28,14 @@ class PropertyController extends Controller
                     return '
                         <div class="flex gap-2">
                         <a class="block w-full px-2 py-1 mb-1 text-xs text-center text-white transition duration-500 bg-gray-700 border border-gray-700 rounded-md select-none ease hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                            href="' . route('admin.properties.edit', $property->id) . '">
+                            href="' . route('admin.properties.show', $property->property_id) . '">
+                            Details
+                        </a>
+                        <a class="block w-full px-2 py-1 mb-1 text-xs text-center text-white transition duration-500 bg-gray-700 border border-gray-700 rounded-md select-none ease hover:bg-gray-800 focus:outline-none focus:shadow-outline"
+                            href="' . route('admin.properties.edit', $property->property_id) . '">
                             Edit
                         </a>
-                        <form class="block w-full" action="' . route('admin.properties.destroy', $property->id) . '" method="POST">
+                        <form class="block w-full" action="' . route('admin.properties.destroy', $property->property_id) . '" method="POST">
                             <button class="w-full px-2 py-1 text-xs text-white transition duration-500 bg-red-500 border border-red-500 rounded-md select-none btn-delete ease hover:bg-red-600 focus:outline-none focus:shadow-outline">
                                 Delete
                             </button>
@@ -51,9 +58,23 @@ class PropertyController extends Controller
 
     public function store(StorePropertyRequest $request)
     {
-        $property = Property::create($request->validated());
+        $validatedData = $request->validated();
+        $validatedData['property_id'] = (string) Str::uuid();
+        $validatedData['created_by'] = Auth::user()->name;
+        $validatedData['updated_by'] = Auth::user()->name;
+
+        // Convert facilities and nearby_locations to JSON
+        $validatedData['facilities'] = json_encode(array_filter($request->facilities ?? []));
+        $validatedData['nearby_locations'] = json_encode(array_filter($request->nearby_locations ?? []));
+
+        Property::create($validatedData);
 
         return redirect()->route('admin.properties.index')->with('success', 'Property created successfully.');
+    }
+
+    public function show(Property $property)
+    {
+        return view('admin.properties.show', compact('property'));
     }
 
     public function edit(Property $property)
@@ -64,13 +85,22 @@ class PropertyController extends Controller
 
     public function update(UpdatePropertyRequest $request, Property $property)
     {
-        $property->update($request->validated());
+        $validatedData = $request->validated();
+        $validatedData['updated_by'] = Auth::user()->name;
+
+        // Convert facilities and nearby_locations to JSON
+        $validatedData['facilities'] = json_encode(array_filter($request->facilities ?? []));
+        $validatedData['nearby_locations'] = json_encode(array_filter($request->nearby_locations ?? []));
+
+        $property->update($validatedData);
 
         return redirect()->route('admin.properties.index')->with('success', 'Property updated successfully.');
     }
 
     public function destroy(Property $property)
     {
+        $property->deleted_by = Auth::user()->name;
+        $property->save();
         $property->delete();
 
         return redirect()->route('admin.properties.index')->with('success', 'Property deleted successfully.');
