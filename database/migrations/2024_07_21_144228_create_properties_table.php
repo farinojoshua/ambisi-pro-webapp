@@ -12,6 +12,7 @@ return new class extends Migration
             $table->uuid('property_id')->primary();
             $table->uuid('developer_id');
             $table->string('name');
+            $table->text('description');
             $table->string('location');
             $table->string('photo_url');
             $table->integer('bedrooms');
@@ -29,6 +30,8 @@ return new class extends Migration
             $table->json('facilities')->nullable();
             $table->json('nearby_locations')->nullable();
             $table->string('video_url')->nullable();
+            $table->decimal('price', 12, 2);
+            $table->string('year_built')->nullable();
             $table->text('whatsapp_message')->nullable();
             $table->string('created_by');
             $table->string('updated_by');

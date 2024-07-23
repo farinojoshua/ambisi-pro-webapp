@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Developer;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\StoreDeveloperRequest;
 use App\Http\Requests\UpdateDeveloperRequest;
-use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
 
 class DeveloperController extends Controller
 {
@@ -54,6 +55,10 @@ class DeveloperController extends Controller
         $validatedData['created_by'] = Auth::user()->name;
         $validatedData['updated_by'] = Auth::user()->name;
 
+        if ($request->hasFile('logo_url')) {
+            $validatedData['logo_url'] = $request->file('logo_url')->store('developers', 'public');
+        }
+
         Developer::create($validatedData);
 
         return redirect()->route('admin.developers.index')->with('success', 'Developer created successfully.');
@@ -69,6 +74,14 @@ class DeveloperController extends Controller
         $validatedData = $request->validated();
         $validatedData['updated_by'] = Auth::user()->name;
 
+        if ($request->hasFile('logo_url')) {
+            // Delete the old image if it exists
+            if ($developer->logo_url) {
+                Storage::disk('public')->delete($developer->logo_url);
+            }
+            $validatedData['logo_url'] = $request->file('logo_url')->store('developers', 'public');
+        }
+
         $developer->update($validatedData);
 
         return redirect()->route('admin.developers.index')->with('success', 'Developer updated successfully.');
@@ -76,6 +89,11 @@ class DeveloperController extends Controller
 
     public function destroy(Developer $developer)
     {
+        // Delete the image if it exists
+        if ($developer->logo_url) {
+            Storage::disk('public')->delete($developer->logo_url);
+        }
+
         $developer->deleted_by = Auth::user()->name;
         $developer->save();
         $developer->delete();

@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\AppointmentController as AdminAppointmentControll
 Route::get('/', [FrontHomeController::class, 'index'])->name('home');
 Route::get('/about', [FrontHomeController::class, 'about'])->name('about');
 Route::get('/properties', [FrontPropertyController::class, 'index'])->name('properties.index');
-Route::get('/properties/detail', [FrontPropertyController::class, 'show'])->name('properties.show');
+Route::get('/properties/{id}', [FrontPropertyController::class, 'show'])->name('properties.show');
 Route::get('/contact', [FrontHomeController::class, 'contact'])->name('contact');
 
 Route::middleware([

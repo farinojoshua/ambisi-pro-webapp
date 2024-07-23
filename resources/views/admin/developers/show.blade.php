@@ -22,11 +22,11 @@
                         </div>
                         <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
-                                Logo URL
+                                Logo
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
                                 @if($developer->logo_url)
-                                    <img src="{{ $developer->logo_url }}" alt="Developer Logo" class="max-w-xs">
+                                    <img src="{{ Storage::url($developer->logo_url) }}" alt="Developer Logo" class="max-w-xs">
                                 @else
                                     <span class="text-gray-500">No Logo</span>
                                 @endif

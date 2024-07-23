@@ -10,8 +10,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $featuredProperties = Property::where('status', 'ACTIVE')->take(5)->get();
-        return view('frontend.home', compact('featuredProperties'));
+        $properties = Property::where('status', 'ACTIVE')->take(5)->get();
+        return view('frontend.home', compact('properties'));
     }
 
     public function about()

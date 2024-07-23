@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Property;
 use App\Models\Developer;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
-use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
@@ -63,6 +64,10 @@ class PropertyController extends Controller
         $validatedData['created_by'] = Auth::user()->name;
         $validatedData['updated_by'] = Auth::user()->name;
 
+        if ($request->hasFile('photo_url')) {
+            $validatedData['photo_url'] = $request->file('photo_url')->store('properties', 'public');
+        }
+
         // Convert facilities and nearby_locations to JSON
         $validatedData['facilities'] = json_encode(array_filter($request->facilities ?? []));
         $validatedData['nearby_locations'] = json_encode(array_filter($request->nearby_locations ?? []));
@@ -88,6 +93,14 @@ class PropertyController extends Controller
         $validatedData = $request->validated();
         $validatedData['updated_by'] = Auth::user()->name;
 
+        if ($request->hasFile('photo_url')) {
+            // Delete the old image if it exists
+            if ($property->photo_url) {
+                Storage::disk('public')->delete($property->photo_url);
+            }
+            $validatedData['photo_url'] = $request->file('photo_url')->store('properties', 'public');
+        }
+
         // Convert facilities and nearby_locations to JSON
         $validatedData['facilities'] = json_encode(array_filter($request->facilities ?? []));
         $validatedData['nearby_locations'] = json_encode(array_filter($request->nearby_locations ?? []));
@@ -99,6 +112,11 @@ class PropertyController extends Controller
 
     public function destroy(Property $property)
     {
+        // Delete the image if it exists
+        if ($property->photo_url) {
+            Storage::disk('public')->delete($property->photo_url);
+        }
+
         $property->deleted_by = Auth::user()->name;
         $property->save();
         $property->delete();

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.frontend')
 
-@section('title', 'Home - Your Real Estate Site')
+@section('title', 'Home')
 
 @section('content')
       <!--Main Slider Start-->
@@ -495,15 +495,16 @@
                     <h3>New Include Properties</h3>
                 </div>
                 <div class="row">
+                    @foreach($properties as $property)
                     <!--Start Single Properties Box style1-->
                     <div class="col-xl-4">
                         <div class="single-properties-box-style1">
                             <div class="img-holder">
-                                <img src="assets/images/properties/properties-v2-1.jpg" alt="">
+                                <img src="{{ asset('storage/' . $property->photo_url) }}" alt="{{ $property->name }}">
                                 <div class="overlay-content">
                                     <ul>
                                         <li>Featured</li>
-                                        <li class="bg1">For Sell</li>
+                                        <li class="bg1">For {{ $property->status }}</li>
                                     </ul>
                                 </div>
                                 <div class="icon">
@@ -513,12 +514,12 @@
                             <div class="text-holder">
                                 <div class="top">
                                     <div class="dot"></div>
-                                    <p>By <a href="#">Mex Bond</a></p>
+                                    <p>By <a href="#">{{ $property->developer->name }}</a></p>
                                 </div>
                                 <h3>
-                                    <a href="{{ route('properties.show') }}">Luxury Villa in Los Angeles.</a>
+                                    <a href="{{ route('properties.show', $property->property_id) }}">{{ $property->name }}</a>
                                 </h3>
-                                <p>Buffalo, New York</p>
+                                <p>{{ $property->location }}</p>
                                 <div class="rating-value-box">
                                     <div class="rating-box">
                                         <ul>
@@ -541,158 +542,21 @@
                                         <span class="text">(5.4)</span>
                                     </div>
                                     <div class="value-box">
-                                        <h4>$59.60</h4>
+                                        <h4>Rp{{ number_format($property->price, 0, ',', '.') }}</h4>
                                     </div>
                                 </div>
                                 <div class="info-box">
                                     <ul>
-                                        <li>
-                                            <span class="icon-bed"></span>04 Bed
-                                        </li>
-                                        <li>
-                                            <span class="icon-bath-tub"></span>02 Bath
-                                        </li>
-                                        <li>
-                                            <span class="icon-selection"></span>2500 sq ft
-                                        </li>
+                                        <li><span class="icon-bed"></span>{{ $property->bedrooms }} Bed</li>
+                                        <li><span class="icon-bath-tub"></span>{{ $property->bathrooms }} Bath</li>
+                                        <li><span class="icon-selection"></span>{{ $property->building_area }} sq ft</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--End Single Properties Box style1-->
-                    <!--Start Single Properties Box style1-->
-                    <div class="col-xl-4">
-                        <div class="single-properties-box-style1">
-                            <div class="img-holder">
-                                <img src="assets/images/properties/properties-v2-2.jpg" alt="">
-                                <div class="overlay-content">
-                                    <ul>
-                                        <li>Featured</li>
-                                        <li class="bg2">For Rent</li>
-                                    </ul>
-                                </div>
-                                <div class="icon">
-                                    <span class="icon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="text-holder">
-                                <div class="top">
-                                    <div class="dot"></div>
-                                    <p>By <a href="#">Mex Bond</a></p>
-                                </div>
-                                <h3>
-                                    <a href="{{ route('properties.show') }}">Smart fokhrey Ara Ashan Garden.</a>
-                                </h3>
-                                <p>Buffalo, New York</p>
-                                <div class="rating-value-box">
-                                    <div class="rating-box">
-                                        <ul>
-                                            <li>
-                                                <span class="icon-star"></span>
-                                            </li>
-                                            <li>
-                                                <span class="icon-star"></span>
-                                            </li>
-                                            <li>
-                                                <span class="icon-star"></span>
-                                            </li>
-                                            <li>
-                                                <span class="icon-star"></span>
-                                            </li>
-                                            <li>
-                                                <span class="icon-star-1"></span>
-                                            </li>
-                                        </ul>
-                                        <span class="text">(5.4)</span>
-                                    </div>
-                                    <div class="value-box">
-                                        <h4>$70.60</h4>
-                                    </div>
-                                </div>
-                                <div class="info-box">
-                                    <ul>
-                                        <li>
-                                            <span class="icon-bed"></span>04 Bed
-                                        </li>
-                                        <li>
-                                            <span class="icon-bath-tub"></span>02 Bath
-                                        </li>
-                                        <li>
-                                            <span class="icon-selection"></span>2500 sq ft
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Single Properties Box style1-->
-                    <!--Start Single Properties Box style1-->
-                    <div class="col-xl-4">
-                        <div class="single-properties-box-style1">
-                            <div class="img-holder">
-                                <img src="assets/images/properties/properties-v2-3.jpg" alt="">
-                                <div class="overlay-content">
-                                    <ul>
-                                        <li>Featured</li>
-                                        <li class="bg1">For Sell</li>
-                                    </ul>
-                                </div>
-                                <div class="icon">
-                                    <span class="icon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="text-holder">
-                                <div class="top">
-                                    <div class="dot"></div>
-                                    <p>By <a href="#">Mex Bond</a></p>
-                                </div>
-                                <h3>
-                                    <a href="{{ route('properties.show') }}">Purbachal Marine City.</a>
-                                </h3>
-                                <p>Buffalo, New York</p>
-                                <div class="rating-value-box">
-                                    <div class="rating-box">
-                                        <ul>
-                                            <li>
-                                                <span class="icon-star"></span>
-                                            </li>
-                                            <li>
-                                                <span class="icon-star"></span>
-                                            </li>
-                                            <li>
-                                                <span class="icon-star"></span>
-                                            </li>
-                                            <li>
-                                                <span class="icon-star"></span>
-                                            </li>
-                                            <li>
-                                                <span class="icon-star-1"></span>
-                                            </li>
-                                        </ul>
-                                        <span class="text">(5.4)</span>
-                                    </div>
-                                    <div class="value-box">
-                                        <h4>$40.00</h4>
-                                    </div>
-                                </div>
-                                <div class="info-box">
-                                    <ul>
-                                        <li>
-                                            <span class="icon-bed"></span>04 Bed
-                                        </li>
-                                        <li>
-                                            <span class="icon-bath-tub"></span>02 Bath
-                                        </li>
-                                        <li>
-                                            <span class="icon-selection"></span>2500 sq ft
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Single Properties Box style1-->
+                    @endforeach
                 </div>
 
                 <div class="row">

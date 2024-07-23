@@ -21,64 +21,68 @@
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->developer->name }}</dd>
                         </div>
                         <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">Description</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->description }}</dd>
+                        </div>
+                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Location</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->location }}</dd>
                         </div>
-                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Photo</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
-                                <img src="{{ $property->photo_url }}" alt="{{ $property->name }}" class="h-auto max-w-full">
+                                <img src="{{ Storage::url($property->photo_url) }}" alt="{{ $property->name }}" class="h-auto max-w-full">
                             </dd>
                         </div>
-                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Bedrooms</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->bedrooms }}</dd>
                         </div>
-                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Bathrooms</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->bathrooms }}</dd>
                         </div>
-                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Land Area</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->land_area }} m²</dd>
                         </div>
-                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Building Area</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->building_area }} m²</dd>
                         </div>
-                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Electricity</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->electricity ?? 'N/A' }}</dd>
                         </div>
-                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Water</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->water ?? 'N/A' }}</dd>
                         </div>
-                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Garage</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->garage ? 'Yes' : 'No' }}</dd>
                         </div>
-                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Certificate</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->certificate ?? 'N/A' }}</dd>
                         </div>
-                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Material Building</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->material_building ?? 'N/A' }}</dd>
                         </div>
-                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Material Floor</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->material_floor ?? 'N/A' }}</dd>
                         </div>
-                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Dining Room</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->dining_room ?? 'N/A' }}</dd>
                         </div>
-                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Living Room</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->living_room ?? 'N/A' }}</dd>
                         </div>
-                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Facilities</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
                                 @if($property->facilities)
@@ -92,7 +96,7 @@
                                 @endif
                             </dd>
                         </div>
-                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Nearby Locations</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
                                 @if($property->nearby_locations)
@@ -106,7 +110,7 @@
                                 @endif
                             </dd>
                         </div>
-                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Video URL</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
                                 @if($property->video_url)
@@ -116,13 +120,21 @@
                                 @endif
                             </dd>
                         </div>
-                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">WhatsApp Message</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->whatsapp_message ?? 'N/A' }}</dd>
                         </div>
-                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Status</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->status }}</dd>
+                        </div>
+                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">Price</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">${{ number_format($property->price, 2) }}</dd>
+                        </div>
+                        <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">Year Built</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->year_built ?? 'N/A' }}</dd>
                         </div>
                         <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Created By</dt>

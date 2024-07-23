@@ -1,6 +1,6 @@
 @extends('frontend.layouts.frontend')
 
-@section('title', 'Contact - Your Real Estate Site')
+@section('title', 'Contact')
 
 @section('content')
         <!--Google Map Start-->

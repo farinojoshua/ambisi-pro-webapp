@@ -1,6 +1,6 @@
 @extends('frontend.layouts.frontend')
 
-@section('title', 'About - Your Real Estate Site')
+@section('title', 'About')
 
 @section('content')
         <!--Start breadcrumb area-->

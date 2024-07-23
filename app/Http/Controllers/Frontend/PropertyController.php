@@ -17,8 +17,10 @@ class PropertyController extends Controller
         return view('frontend.properties.index', compact('properties'));
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('frontend.properties.detail');
+        $property = Property::with('developer')->findOrFail($id);
+        return view('frontend.properties.detail', compact('property'));
     }
 }
+
