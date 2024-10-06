@@ -8,9 +8,6 @@
         <div class="container">
             <div class="property-details-img-box-inner">
                 <div class="property-details-img-bg" style="background-image: url({{ asset('storage/' . $property->photo_url) }});"></div>
-                <div class="icon">
-                    <span class="icon-heart"></span>
-                </div>
             </div>
         </div>
     </section>
@@ -34,16 +31,15 @@
                             </ul>
                             <span class="text">(5.4)</span>
                         </div>
-                        <div class="value-box">
-                            <h3>Rp{{ number_format($property->price, 0, ',', '.') }}</h3>
-                        </div>
+                    </div>
+                    <div class="mt-4 value-box">
+                        <h3><strong>Rp{{ number_format($property->price, 0, ',', '.') }}</strong></h3>
                     </div>
                 </div>
-                <div class="property-details-top__right">
-                    <a href="tel:{{ $property->developer->phone ?? '' }}">
-                        <span class="icon-telephone"></span> {{ $property->developer->phone ?? 'N/A' }}
-                    </a>
-                </div>
+                <a href="https://wa.me/628138523432?text={{ urlencode('Halo, saya tertarik dengan properti ' . $property->name . ' yang berlokasi di ' . $property->location . ' dengan harga Rp' . number_format($property->price, 0, ',', '.') . '. Apakah masih tersedia?') }}"
+                   class="btn-one btn-whatsapp" target="_blank">
+                    <span class="txt">Chat di WhatsApp<i class="icon-plus-sign"></i></span>
+                </a>
             </div>
             <div class="row">
                 <!--Start Property Details Content-->
@@ -60,20 +56,18 @@
                             <div class="row">
                                 <div class="col-xl-6">
                                     <ul>
-                                        <li><span>Property ID:</span> {{ $property->property_id }}</li>
                                         <li><span>Price:</span> Rp{{ number_format($property->price, 0, ',', '.') }}</li>
                                         <li><span>Property Type:</span> {{ $property->developer->name }}</li>
-                                        <li><span>Property Status:</span> {{ $property->status }}</li>
                                         <li><span>Total Rooms:</span> {{ $property->bedrooms + $property->bathrooms }}</li>
                                         <li><span>Bedrooms:</span> {{ $property->bedrooms }}</li>
                                         <li><span>Bathrooms:</span> {{ $property->bathrooms }}</li>
                                         <li><span>Dining Room:</span> {{ $property->dining_room ?? 'N/A' }}</li>
                                         <li><span>Living Room:</span> {{ $property->living_room ?? 'N/A' }}</li>
+                                        <li><span>Garage:</span> {{ $property->garage ? 'Yes' : 'No' }}</li>
                                     </ul>
                                 </div>
                                 <div class="col-xl-6">
                                     <ul>
-                                        <li><span>Garage:</span> {{ $property->garage ? 'Yes' : 'No' }}</li>
                                         <li><span>Year Built:</span> {{ $property->year_built ?? 'N/A' }}</li>
                                         <li><span>Property Size:</span> {{ $property->building_area }} SQFT</li>
                                         <li><span>Land Size:</span> {{ $property->land_area }} SQFT</li>
@@ -88,7 +82,7 @@
                         </div>
 
                         @if($property->facilities)
-                        <div class="sidebar-features-box">
+                        <div class="mb-5 sidebar-features-box">
                             <div class="inner-title">
                                 <h5>Features</h5>
                             </div>
@@ -101,20 +95,6 @@
                                     </div>
                                 </div>
                                 @endforeach
-                            </div>
-                        </div>
-                        @endif
-
-                        @if($property->video_url)
-                        <div class="property-details-video-gallery">
-                            <div class="property-details-video-gallery-bg" style="background-image: url({{ asset('storage/' . $property->photo_url) }});">
-                            </div>
-                            <div class="video-gallery-style1">
-                                <div class="icon wow zoomIn animated" data-wow-delay="300ms" data-wow-duration="1500ms">
-                                    <a class="video-popup" title="Video Gallery" href="{{ $property->video_url }}">
-                                        <span class="icon-play-buttton"></span>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                         @endif
@@ -155,34 +135,10 @@
                                         </ul>
                                         <span class="text">(5.4)</span>
                                     </div>
-                                    <ul>
-                                        <li>Email: <a href="mailto:{{ $property->developer->email }}">{{ $property->developer->email }}</a></li>
-                                        <li>Phone: <a href="tel:{{ $property->developer->phone }}">{{ $property->developer->phone }}</a></li>
-                                    </ul>
                                 </div>
-                            </div>
-                            <div class="text-center btns-box">
-                                <a class="btn-one" href="#">
-                                    <span class="txt">
-                                        View Profile
-                                        <i class="icon-plus-sign"></i>
-                                    </span>
-                                </a>
                             </div>
                         </div>
                         <!--End Sidebar Author Info Box-->
-
-                        <!--Start Listed By Form-->
-                        <div class="listed-by-form">
-                            <div class="inner-title">
-                                <h5>Listed By</h5>
-                            </div>
-                            <form id="listed-by-form" name="listed-by-form" action="#" method="post">
-                                <!-- Form fields would go here -->
-                            </form>
-                        </div>
-                        <!--End Listed By Form-->
-
                     </div>
                 </div>
 

@@ -16,7 +16,7 @@
                             <div class="breadcrumb-menu" data-aos="fade-left" data-aos-easing="linear"
                                 data-aos-duration="500">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="{{ route('home') }}">Home</a></li>
                                     <li class="active">About</li>
                                 </ul>
                             </div>
@@ -63,12 +63,12 @@
                                 <div class="sub-title">
                                     <h6>About Us</h6>
                                 </div>
-                                <h2>Our mission is to<br> redefine real estate<br> in the customer<br> favor.</h2>
+                                <h2>Ambisi Properti <br> Rumah Idaman <br> Impian Anda <br> Prioritas Kami.</h2>
                             </div>
                             <div class="inner-text">
-                                <p>Pellentesque viverra ex eget nunc bibendum, at porta velit fringilla. Etiam at
-                                    aliquet neque, consequat feugiat augue. Integer commodo tellus eu est porta
-                                    imperdiet.</p>
+                                <p>Ambisi Properti berdiri sejak 2020 dan resmi berbadan hukum pada tahun 2023 dengan nama PT. Ambisi Mandiri Perkasa. Fokus kami adalah menyediakan rumah idaman bagi pencari hunian baru dengan mengutamakan kualitas dan kepuasan pelanggan.</p>
+                                <p><strong>Visi:</strong> <br> "Better Late Than Never" <br> Ambisi Properti percaya bahwa usaha yang konsisten akan selalu membuahkan hasil, walaupun terlambat sekalipun. Kami berkomitmen untuk terus berupaya mewujudkan Rumah Impian dengan harga yang terjangkau.</p>
+                                <p><strong>Motto:</strong> <br> "Your Dreams, Our Ambitions" <br> Kami menjadikan mimpi Anda sebagai ambisi kami untuk membantu mewujudkan rumah impian Anda.</p>
                             </div>
                         </div>
                     </div>
@@ -77,15 +77,84 @@
         </section>
         <!--End About Style1 Area-->
 
+        <!--Start Achievements Section-->
+        <section class="achievements-area">
+            <div class="container">
+                <div class="text-center sec-title">
+                    <div class="sub-title">
+                        <h6>Achievements</h6>
+                    </div>
+                    <h3>Pencapaian Kami</h3>
+                </div>
+                <div class="row">
+                    <!--Start Single Achievement Box-->
+                    <div class="col-xl-3 col-lg-6 col-md-6">
+                        <div class="single-achievement-box">
+                            <div class="icon">
+                                <span class="icon-house"></span> <!-- Bisa diganti dengan ikon lain yang sesuai -->
+                            </div>
+                            <div class="text">
+                                <h4>Sukses Menjual 102 Unit</h4>
+                                <p>Cluster The Awa Jagorawi Golf Estate 2021</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Achievement Box-->
+
+                    <!--Start Single Achievement Box-->
+                    <div class="col-xl-3 col-lg-6 col-md-6">
+                        <div class="single-achievement-box">
+                            <div class="icon">
+                                <span class="icon-trophy"></span>
+                            </div>
+                            <div class="text">
+                                <h4>Top 1 Property Broker</h4>
+                                <p>2023 di Sentul City, Bogor</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Achievement Box-->
+
+                    <!--Start Single Achievement Box-->
+                    <div class="col-xl-3 col-lg-6 col-md-6">
+                        <div class="single-achievement-box">
+                            <div class="icon">
+                                <span class="icon-money"></span>
+                            </div>
+                            <div class="text">
+                                <h4>Penjualan Puluhan Miliar</h4>
+                                <p>Dalam 1 bulan</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Achievement Box-->
+
+                    <!--Start Single Achievement Box-->
+                    <div class="col-xl-3 col-lg-6 col-md-6">
+                        <div class="single-achievement-box">
+                            <div class="icon">
+                                <span class="icon-handshake"></span>
+                            </div>
+                            <div class="text">
+                                <h4>50+ Partner Developer</h4>
+                                <p>Dan bank yang bekerjasama dengan kami</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Achievement Box-->
+                </div>
+            </div>
+        </section>
+        <!--End Achievements Section-->
 
         <!--Start Choose Style3 Area-->
         <section class="choose-style3-area">
             <div class="container">
                 <div class="text-center sec-title">
                     <div class="sub-title">
-                        <h6>Find more Choose</h6>
+                        <h6>Temukan Alasan Memilih Kami</h6>
                     </div>
-                    <h3>Why Choose Our Properties</h3>
+                    <h3>Mengapa Memilih Properti Kami?</h3>
                 </div>
                 <div class="row">
                     <div class="col-xl-12">
@@ -121,10 +190,8 @@
                                     <span class="icon-trust"></span>
                                 </div>
                                 <div class="text">
-                                    <h3><a href="#">Trusted By Thousands</a></h3>
-                                    <p>Donec sit amet urna libero. Quisque efficitur nulla et odio hendrerit gravida.
-                                        Sed
-                                        mattis leo mollis.</p>
+                                    <h3><a href="#">Dipercaya Ribuan Klien</a></h3>
+                                    <p>Kami dipercaya oleh ribuan klien untuk membantu mereka mewujudkan rumah impian mereka.</p>
                                 </div>
                             </div>
                             <!--End Single Choose Style1 Box-->
@@ -134,10 +201,8 @@
                                     <span class="icon-house"></span>
                                 </div>
                                 <div class="text">
-                                    <h3><a href="#">Evaluate Property</a></h3>
-                                    <p>Donec sit amet urna libero. Quisque efficitur nulla et odio hendrerit gravida.
-                                        Sed
-                                        mattis leo mollis.</p>
+                                    <h3><a href="#">Evaluasi Properti yang Transparan</a></h3>
+                                    <p>Kami menyediakan evaluasi properti yang jujur dan menyeluruh, membantu Anda membuat keputusan yang tepat.</p>
                                 </div>
                             </div>
                             <!--End Single Choose Style1 Box-->
@@ -147,10 +212,8 @@
                                     <span class="icon-payment-method"></span>
                                 </div>
                                 <div class="text">
-                                    <h3><a href="#">Wide Renge Of Properties</a></h3>
-                                    <p>Donec sit amet urna libero. Quisque efficitur nulla et odio hendrerit gravida.
-                                        Sed
-                                        mattis leo mollis.</p>
+                                    <h3><a href="#">Pilihan Properti Beragam</a></h3>
+                                    <p>Kami menawarkan berbagai pilihan properti yang sesuai dengan kebutuhan dan anggaran Anda.</p>
                                 </div>
                             </div>
                             <!--End Single Choose Style1 Box-->
@@ -160,129 +223,18 @@
                                     <span class="icon-contract"></span>
                                 </div>
                                 <div class="text">
-                                    <h3><a href="#">Find a Good Side</a></h3>
-                                    <p>Donec sit amet urna libero. Quisque efficitur nulla et odio hendrerit gravida.
-                                        Sed
-                                        mattis leo mollis.</p>
+                                    <h3><a href="#">Lokasi yang Strategis</a></h3>
+                                    <p>Kami menawarkan properti di lokasi-lokasi terbaik yang sesuai dengan gaya hidup dan kebutuhan Anda.</p>
                                 </div>
                             </div>
                             <!--End Single Choose Style1 Box-->
-
-
-                            <!--Start Single Choose Style1 Box-->
-                            <div class="text-center single-choose-style1-box">
-                                <div class="icon">
-                                    <span class="icon-trust"></span>
-                                </div>
-                                <div class="text">
-                                    <h3><a href="#">Trusted By Thousands</a></h3>
-                                    <p>Donec sit amet urna libero. Quisque efficitur nulla et odio hendrerit gravida.
-                                        Sed
-                                        mattis leo mollis.</p>
-                                </div>
-                            </div>
-                            <!--End Single Choose Style1 Box-->
-                            <!--Start Single Choose Style1 Box-->
-                            <div class="text-center single-choose-style1-box">
-                                <div class="icon">
-                                    <span class="icon-house"></span>
-                                </div>
-                                <div class="text">
-                                    <h3><a href="#">Evaluate Property</a></h3>
-                                    <p>Donec sit amet urna libero. Quisque efficitur nulla et odio hendrerit gravida.
-                                        Sed
-                                        mattis leo mollis.</p>
-                                </div>
-                            </div>
-                            <!--End Single Choose Style1 Box-->
-                            <!--Start Single Choose Style1 Box-->
-                            <div class="text-center single-choose-style1-box">
-                                <div class="icon">
-                                    <span class="icon-payment-method"></span>
-                                </div>
-                                <div class="text">
-                                    <h3><a href="#">Wide Renge Of Properties</a></h3>
-                                    <p>Donec sit amet urna libero. Quisque efficitur nulla et odio hendrerit gravida.
-                                        Sed
-                                        mattis leo mollis.</p>
-                                </div>
-                            </div>
-                            <!--End Single Choose Style1 Box-->
-                            <!--Start Single Choose Style1 Box-->
-                            <div class="text-center single-choose-style1-box">
-                                <div class="icon">
-                                    <span class="icon-contract"></span>
-                                </div>
-                                <div class="text">
-                                    <h3><a href="#">Find a Good Side</a></h3>
-                                    <p>Donec sit amet urna libero. Quisque efficitur nulla et odio hendrerit gravida.
-                                        Sed
-                                        mattis leo mollis.</p>
-                                </div>
-                            </div>
-                            <!--End Single Choose Style1 Box-->
-
-
-                            <!--Start Single Choose Style1 Box-->
-                            <div class="text-center single-choose-style1-box">
-                                <div class="icon">
-                                    <span class="icon-trust"></span>
-                                </div>
-                                <div class="text">
-                                    <h3><a href="#">Trusted By Thousands</a></h3>
-                                    <p>Donec sit amet urna libero. Quisque efficitur nulla et odio hendrerit gravida.
-                                        Sed
-                                        mattis leo mollis.</p>
-                                </div>
-                            </div>
-                            <!--End Single Choose Style1 Box-->
-                            <!--Start Single Choose Style1 Box-->
-                            <div class="text-center single-choose-style1-box">
-                                <div class="icon">
-                                    <span class="icon-house"></span>
-                                </div>
-                                <div class="text">
-                                    <h3><a href="#">Evaluate Property</a></h3>
-                                    <p>Donec sit amet urna libero. Quisque efficitur nulla et odio hendrerit gravida.
-                                        Sed
-                                        mattis leo mollis.</p>
-                                </div>
-                            </div>
-                            <!--End Single Choose Style1 Box-->
-                            <!--Start Single Choose Style1 Box-->
-                            <div class="text-center single-choose-style1-box">
-                                <div class="icon">
-                                    <span class="icon-payment-method"></span>
-                                </div>
-                                <div class="text">
-                                    <h3><a href="#">Wide Renge Of Properties</a></h3>
-                                    <p>Donec sit amet urna libero. Quisque efficitur nulla et odio hendrerit gravida.
-                                        Sed
-                                        mattis leo mollis.</p>
-                                </div>
-                            </div>
-                            <!--End Single Choose Style1 Box-->
-                            <!--Start Single Choose Style1 Box-->
-                            <div class="text-center single-choose-style1-box">
-                                <div class="icon">
-                                    <span class="icon-contract"></span>
-                                </div>
-                                <div class="text">
-                                    <h3><a href="#">Find a Good Side</a></h3>
-                                    <p>Donec sit amet urna libero. Quisque efficitur nulla et odio hendrerit gravida.
-                                        Sed
-                                        mattis leo mollis.</p>
-                                </div>
-                            </div>
-                            <!--End Single Choose Style1 Box-->
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!--End Choose Style3 Area-->
+
 
         <!--Start Video Gallery Style1 Area-->
         <section class="video-gallery-style1-area">
@@ -441,182 +393,6 @@
                                     </div>
                                 </div>
                                 <!--End Single Testimonial Style1-->
-
-
-                                <!--Start Single Testimonial Style1-->
-                                <div class="single-testimonial-style1">
-                                    <div class="border-box"></div>
-                                    <div class="top-box">
-                                        <div class="inner">
-                                            <div class="img-box">
-                                                <img src="assets/images/testimonial/testimonial-v1-1.jpg" alt="">
-                                            </div>
-                                            <div class="rating-box">
-                                                <ul>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star-1"></span>
-                                                    </li>
-                                                </ul>
-                                                <span class="text">(5.4)</span>
-                                            </div>
-                                        </div>
-                                        <div class="text">
-                                            <p>
-                                                Hendr placiera.In Pelle tesque Donec ac quasm nouon elit hendr
-                                                placiera.In Pelle tesque a est dm lacinia convkalli. Etiam non quam
-                                                sitti amet odio phare.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="client-name">
-                                        <h3>Nora Penelope</h3>
-                                        <span>B.Tech (CSE) , 2017-2022</span>
-                                    </div>
-                                </div>
-                                <!--End Single Testimonial Style1-->
-                                <!--Start Single Testimonial Style1-->
-                                <div class="single-testimonial-style1">
-                                    <div class="border-box"></div>
-                                    <div class="top-box">
-                                        <div class="inner">
-                                            <div class="img-box">
-                                                <img src="assets/images/testimonial/testimonial-v1-2.jpg" alt="">
-                                            </div>
-                                            <div class="rating-box">
-                                                <ul>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star-1"></span>
-                                                    </li>
-                                                </ul>
-                                                <span class="text">(5.4)</span>
-                                            </div>
-                                        </div>
-                                        <div class="text">
-                                            <p>
-                                                Etiam non quam sitti amet Donec ac quasm nouon elit hendr placiera.In
-                                                Pelle tesque a est dm lacinia convkalli. Etiam non quam sitti amet odio
-                                                phare.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="client-name">
-                                        <h3>Silverster Scott</h3>
-                                        <span>B.Tech-IT , 2017-2022</span>
-                                    </div>
-                                </div>
-                                <!--End Single Testimonial Style1-->
-
-                                <!--Start Single Testimonial Style1-->
-                                <div class="single-testimonial-style1">
-                                    <div class="border-box"></div>
-                                    <div class="top-box">
-                                        <div class="inner">
-                                            <div class="img-box">
-                                                <img src="assets/images/testimonial/testimonial-v1-1.jpg" alt="">
-                                            </div>
-                                            <div class="rating-box">
-                                                <ul>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star-1"></span>
-                                                    </li>
-                                                </ul>
-                                                <span class="text">(5.4)</span>
-                                            </div>
-                                        </div>
-                                        <div class="text">
-                                            <p>
-                                                Hendr placiera.In Pelle tesque Donec ac quasm nouon elit hendr
-                                                placiera.In Pelle tesque a est dm lacinia convkalli. Etiam non quam
-                                                sitti amet odio phare.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="client-name">
-                                        <h3>Nora Penelope</h3>
-                                        <span>B.Tech (CSE) , 2017-2022</span>
-                                    </div>
-                                </div>
-                                <!--End Single Testimonial Style1-->
-                                <!--Start Single Testimonial Style1-->
-                                <div class="single-testimonial-style1">
-                                    <div class="border-box"></div>
-                                    <div class="top-box">
-                                        <div class="inner">
-                                            <div class="img-box">
-                                                <img src="assets/images/testimonial/testimonial-v1-2.jpg" alt="">
-                                            </div>
-                                            <div class="rating-box">
-                                                <ul>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star"></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon-star-1"></span>
-                                                    </li>
-                                                </ul>
-                                                <span class="text">(5.4)</span>
-                                            </div>
-                                        </div>
-                                        <div class="text">
-                                            <p>
-                                                Etiam non quam sitti amet Donec ac quasm nouon elit hendr placiera.In
-                                                Pelle tesque a est dm lacinia convkalli. Etiam non quam sitti amet odio
-                                                phare.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="client-name">
-                                        <h3>Silverster Scott</h3>
-                                        <span>B.Tech-IT , 2017-2022</span>
-                                    </div>
-                                </div>
-                                <!--End Single Testimonial Style1-->
-
                             </div>
                         </div>
                     </div>

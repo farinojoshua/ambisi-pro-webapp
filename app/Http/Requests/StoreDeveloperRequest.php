@@ -15,7 +15,7 @@ class StoreDeveloperRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'logo_url' => 'nullable|url|max:255',
+            'logo_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

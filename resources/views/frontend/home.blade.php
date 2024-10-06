@@ -38,17 +38,15 @@
                       <div class="round-box"></div>
                       <div class="main-slider-content__inner">
                         <div class="big-title">
-                          <h2>
-                            Better Late<br />
-                            <span>Than Never</span>
-                          </h2>
+                            <h2>
+                                Lebih Baik Terlambat <br />
+                                <span>Daripada Tidak Sama Sekali</span>
+                            </h2>
                         </div>
                         <div class="text">
-                          <p>
-                            Morbi eget pharetra felis. Nam pulvinar tincidunt
-                            purus eget convallis. Nulla eget arcu vitae<br />
-                            velit suscipit mattis. Quisque at molestie odio.
-                          </p>
+                            <p>
+                                Kami percaya bahwa setiap usaha yang dilakukan dengan kesabaran dan konsistensi akan membuahkan hasil. Ambisi Properti siap membantu Anda mewujudkan rumah impian, tak peduli seberapa panjang perjalanan Anda.
+                            </p>
                         </div>
                       </div>
                     </div>
@@ -72,17 +70,15 @@
                       <div class="round-box"></div>
                       <div class="main-slider-content__inner">
                         <div class="big-title">
-                          <h2>
-                            Your Dream,<br />
-                            My Ambitions
-                          </h2>
+                            <h2>
+                                Mimpimu,<br />
+                                Ambisi Kami
+                            </h2>
                         </div>
                         <div class="text">
-                          <p>
-                            Morbi eget pharetra felis. Nam pulvinar tincidunt
-                            purus eget convallis. Nulla eget arcu vitae<br />
-                            velit suscipit mattis. Quisque at molestie odio.
-                          </p>
+                            <p>
+                                Setiap impian memiliki perjalanan, dan kami ada untuk mendampingi Anda. Bersama Ambisi Properti, wujudkan mimpi memiliki hunian ideal dengan layanan profesional dan berpengalaman.
+                            </p>
                         </div>
                       </div>
                     </div>
@@ -106,14 +102,15 @@
                       <div class="round-box"></div>
                       <div class="main-slider-content__inner">
                         <div class="big-title">
-                          <h2>Search Properties <br />for Sale</h2>
+                            <h2>
+                                Temukan Properti <br />
+                                Impian Anda
+                            </h2>
                         </div>
                         <div class="text">
-                          <p>
-                            Morbi eget pharetra felis. Nam pulvinar tincidunt
-                            purus eget convallis. Nulla eget arcu vitae<br />
-                            velit suscipit mattis. Quisque at molestie odio.
-                          </p>
+                            <p>
+                                Jelajahi berbagai pilihan properti terbaik yang sesuai dengan kebutuhan dan anggaran Anda. Kami akan memandu Anda dalam setiap langkah untuk menemukan tempat tinggal yang sempurna.
+                            </p>
                         </div>
                       </div>
                     </div>
@@ -168,102 +165,63 @@
                     <!--Tab-->
                     <div class="tab-content-box-item" id="sell">
                       <div class="clearfix search-form-tab-content-box-item">
-                        <form
-                          action="index.html"
-                          method="post"
-                          class="clearfix search-form"
-                        >
-                          <ul class="clearfix">
-                            <li>
-                              <div class="clearfix form-group">
-                                <label>Type</label>
-                                <div class="field-input">
-                                  <div class="select-box">
-                                    <select class="wide">
-                                      <option data-display="Property Type">
-                                        Property Type
-                                      </option>
-                                      <option value="1">Laxury</option>
-                                      <option value="2">Classic</option>
-                                      <option value="3">Modern</option>
-                                      <option value="4">New</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="clearfix form-group">
-                                <label>Your Location</label>
-                                <div class="field-input">
-                                  <div class="select-box">
-                                    <select class="wide">
-                                      <option data-display="Your Location">
-                                        Your Location
-                                      </option>
-                                      <option value="1">New York</option>
-                                      <option value="2">California</option>
-                                      <option value="3">London</option>
-                                      <option value="4">Maxico</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="clearfix form-group">
-                                <label>Bed/Bathrooms</label>
-                                <div class="field-input">
-                                  <div class="select-box">
-                                    <select class="wide">
-                                      <option
-                                        data-display="00 Bed / 00 Bathrooms"
-                                      >
-                                        00 Bed / 00 Bathrooms
-                                      </option>
-                                      <option value="1">
-                                        05 Bed / 02 Bathrooms
-                                      </option>
-                                      <option value="2">
-                                        02 Bed / 01 Bathrooms
-                                      </option>
-                                      <option value="3">
-                                        07 Bed / 03 Bathrooms
-                                      </option>
-                                      <option value="4">
-                                        01 Bed / 01 Bathrooms
-                                      </option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="clearfix form-group">
-                                <label>Search</label>
-                                <div class="field-input">
-                                  <input
-                                    placeholder="Enter Keywords"
-                                    type="text"
-                                  />
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="btn-box">
-                                <button
-                                  class="btn-one"
-                                  type="submit"
-                                  data-loading-text="Please wait..."
-                                >
-                                  <span class="txt">
-                                    Search Home
-                                    <i class="icon-plus-sign"></i>
-                                  </span>
-                                </button>
-                              </div>
-                            </li>
-                          </ul>
+                        <form action="{{ route('properties.index') }}" method="GET" class="clearfix search-form">
+                            <ul class="clearfix">
+                                <li>
+                                    <div class="clearfix form-group">
+                                        <label>Type</label>
+                                        <div class="field-input">
+                                            <div class="select-box">
+                                                <select name="property_type" class="wide">
+                                                    <option value="" selected>Property Type</option>
+                                                    <option value="Apartment">Apartment</option>
+                                                    <option value="House">House</option>
+                                                    <option value="Office">Office</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="clearfix form-group">
+                                        <label>Your Location</label>
+                                        <div class="field-input">
+                                            <input type="text" name="location" placeholder="Enter Location">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="clearfix form-group">
+                                        <label>Bed/Bathrooms</label>
+                                        <div class="field-input">
+                                            <div class="select-box">
+                                                <select name="bedrooms" class="wide">
+                                                    <option value="">00 Bed / 00 Bathrooms</option>
+                                                    <option value="1">1 Bed / 1 Bath</option>
+                                                    <option value="2">2 Bed / 1 Bath</option>
+                                                    <option value="3">3 Bed / 2 Bath</option>
+                                                    <option value="4">4 Bed / 3 Bath</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="clearfix form-group">
+                                        <label>Search</label>
+                                        <div class="field-input">
+                                            <input name="keywords" placeholder="Enter Keywords" type="text">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="btn-box">
+                                        <button class="btn-one" type="submit">
+                                            <span class="txt">Search Home <i class="icon-plus-sign"></i></span>
+                                        </button>
+                                    </div>
+                                </li>
+                            </ul>
                         </form>
                       </div>
                     </div>
@@ -501,15 +459,6 @@
                         <div class="single-properties-box-style1">
                             <div class="img-holder">
                                 <img src="{{ asset('storage/' . $property->photo_url) }}" alt="{{ $property->name }}">
-                                <div class="overlay-content">
-                                    <ul>
-                                        <li>Featured</li>
-                                        <li class="bg1">For {{ $property->status }}</li>
-                                    </ul>
-                                </div>
-                                <div class="icon">
-                                    <span class="icon-heart"></span>
-                                </div>
                             </div>
                             <div class="text-holder">
                                 <div class="top">

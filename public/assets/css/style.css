@@ -5991,6 +5991,38 @@ animation: spinner 1s infinite linear;
   margin-top: 10px !important;
 }
 
+/* Bagian Achievements */
+.achievements-area .single-achievement-box {
+  background: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.achievements-area .single-achievement-box:hover {
+  transform: translateY(-10px);
+}
+
+.achievements-area .single-achievement-box .icon {
+  font-size: 40px;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+.achievements-area .single-achievement-box h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.achievements-area .single-achievement-box p {
+  font-size: 14px;
+  color: #6c757d;
+}
+
 /*--------------------------------------------------------------
 # End Css
 --------------------------------------------------------------*/
