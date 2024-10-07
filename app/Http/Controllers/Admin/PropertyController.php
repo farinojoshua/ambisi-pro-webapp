@@ -64,18 +64,28 @@ class PropertyController extends Controller
         $validatedData['created_by'] = Auth::user()->name;
         $validatedData['updated_by'] = Auth::user()->name;
 
-        if ($request->hasFile('photo_url')) {
-            $validatedData['photo_url'] = $request->file('photo_url')->store('properties', 'public');
+        // Save map_url
+        $validatedData['map_url'] = $request->input('map_url');
+
+        // Simpan foto ke array $photos
+        $photos = [];
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $path = $photo->store('properties', 'public');
+                $photos[] = $path;
+            }
         }
 
-        // Convert facilities and nearby_locations to JSON
-        $validatedData['facilities'] = json_encode(array_filter($request->facilities ?? []));
-        $validatedData['nearby_locations'] = json_encode(array_filter($request->nearby_locations ?? []));
+        // Pastikan konversi array $photos menjadi JSON yang valid
+        $validatedData['photos'] = json_encode($photos);
 
+        // Insert data ke dalam database
         Property::create($validatedData);
 
         return redirect()->route('admin.properties.index')->with('success', 'Property created successfully.');
     }
+
+
 
     public function show(Property $property)
     {
@@ -93,12 +103,25 @@ class PropertyController extends Controller
         $validatedData = $request->validated();
         $validatedData['updated_by'] = Auth::user()->name;
 
-        if ($request->hasFile('photo_url')) {
-            // Delete the old image if it exists
-            if ($property->photo_url) {
-                Storage::disk('public')->delete($property->photo_url);
+        // Save map_url
+        $validatedData['map_url'] = $request->input('map_url');
+
+        // Handle multiple photo uploads
+        if ($request->hasFile('photos')) {
+            // Delete existing photos if necessary
+            if ($property->photos) {
+                foreach (json_decode($property->photos) as $photo) {
+                    Storage::disk('public')->delete($photo);
+                }
             }
-            $validatedData['photo_url'] = $request->file('photo_url')->store('properties', 'public');
+
+            // Save new photos
+            $photos = [];
+            foreach ($request->file('photos') as $photo) {
+                $photos[] = $photo->store('properties', 'public');
+            }
+
+            $validatedData['photos'] = json_encode($photos);
         }
 
         // Convert facilities and nearby_locations to JSON

@@ -70,14 +70,16 @@
                                    id="location" type="text" placeholder="Location" required>
                         </div>
                         <div class="w-full px-3 mb-6">
-                            <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="photo_url">
-                                Photo
+                            <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="photos">
+                                Photos
                             </label>
-                            <input name="photo_url" type="file"
+                            <input name="photos[]" type="file" multiple
                                    class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                                   id="photo_url">
-                            @if ($property->photo_url)
-                                <img src="{{ Storage::url($property->photo_url) }}" alt="Property Photo" class="max-w-xs mt-2">
+                                   id="photos">
+                            @if ($property->photos)
+                                @foreach(json_decode($property->photos) as $photo)
+                                    <img src="{{ Storage::url($photo) }}" alt="Property Photo" class="max-w-xs mt-2">
+                                @endforeach
                             @endif
                         </div>
                         <div class="w-full px-3 mb-6 md:w-1/2">
@@ -184,11 +186,18 @@
                                 Facilities
                             </label>
                             <div id="facilities-container">
-                                @foreach(old('facilities', json_decode($property->facilities) ?? []) as $facility)
+                                @php
+                                    // Ensure facilities is always an array
+                                    $facilities = old('facilities', $property->facilities ?? []);
+                                    if (!is_array($facilities)) {
+                                        $facilities = json_decode($facilities, true) ?? [];
+                                    }
+                                @endphp
+                                @foreach($facilities as $facility)
                                     <div class="flex mb-2">
                                         <input type="text" name="facilities[]" value="{{ $facility }}"
-                                               class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                                               placeholder="Facility">
+                                            class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+                                            placeholder="Facility">
                                         <button type="button" class="px-2 py-1 ml-2 text-white bg-red-500 rounded" onclick="this.parentElement.remove()">Remove</button>
                                     </div>
                                 @endforeach
@@ -202,17 +211,25 @@
                                 Nearby Locations
                             </label>
                             <div id="nearby-locations-container">
-                                @foreach(old('nearby_locations', json_decode($property->nearby_locations) ?? []) as $location)
+                                @php
+                                    // Ensure nearby_locations is always an array
+                                    $nearby_locations = old('nearby_locations', $property->nearby_locations ?? []);
+                                    if (!is_array($nearby_locations)) {
+                                        $nearby_locations = json_decode($nearby_locations, true) ?? [];
+                                    }
+                                @endphp
+                                @foreach($nearby_locations as $location)
                                     <div class="flex mb-2">
                                         <input type="text" name="nearby_locations[]" value="{{ $location }}"
-                                               class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                                               placeholder="Nearby Location">
+                                            class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+                                            placeholder="Nearby Location">
                                         <button type="button" class="px-2 py-1 ml-2 text-white bg-red-500 rounded" onclick="this.parentElement.remove()">Remove</button>
                                     </div>
                                 @endforeach
                             </div>
                             <button type="button" class="px-4 py-2 mt-2 text-white bg-blue-500 rounded" onclick="addNearbyLocation()">Add Nearby Location</button>
                         </div>
+
 
                         <div class="w-full px-3 mb-6">
                             <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="video_url">
@@ -245,6 +262,14 @@
                             <textarea name="whatsapp_message" id="whatsapp_message"
                                       class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
                                       placeholder="WhatsApp Message">{{ old('whatsapp_message', $property->whatsapp_message) }}</textarea>
+                        </div>
+                        <div class="w-full px-3 mb-6">
+                            <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="map_url">
+                                Map URL
+                            </label>
+                            <input value="{{ old('map_url', $property->map_url ?? '') }}" name="map_url"
+                                   class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+                                   id="map_url" type="url" placeholder="Enter Google Maps embed URL">
                         </div>
                         <div class="w-full px-3 mb-6">
                             <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="status">

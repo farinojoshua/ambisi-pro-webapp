@@ -69,12 +69,12 @@
                                 id="location" type="text" placeholder="Location" required>
                         </div>
                         <div class="w-full px-3 mb-6">
-                            <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="photo_url">
+                            <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="photos">
                                 Photo
                             </label>
-                            <input name="photo_url" type="file"
-                                class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="photo_url" required>
+                            <input name="photos[]" type="file" multiple
+                            class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+                            id="photo_url" required>
                         </div>
                         <div class="w-full px-3 mb-6 md:w-1/2">
                             <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="bedrooms">
@@ -241,6 +241,14 @@
                             <textarea name="whatsapp_message" id="whatsapp_message"
                                 class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
                                 placeholder="WhatsApp Message">{{ old('whatsapp_message') }}</textarea>
+                        </div>
+                        <div class="w-full px-3 mb-6">
+                            <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="map_url">
+                                Map URL
+                            </label>
+                            <input value="{{ old('map_url', $property->map_url ?? '') }}" name="map_url"
+                                   class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+                                   id="map_url" type="url" placeholder="Enter Google Maps embed URL">
                         </div>
                         <div class="w-full px-3 mb-6">
                             <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="status">

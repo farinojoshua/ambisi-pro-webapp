@@ -18,7 +18,8 @@ class StorePropertyRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'location' => 'required|string|max:255',
-            'photo_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photos' => 'required|array',
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'bedrooms' => 'required|integer|min:0',
             'bathrooms' => 'required|integer|min:0',
             'land_area' => 'required|numeric|min:0',
@@ -40,6 +41,7 @@ class StorePropertyRequest extends FormRequest
             'year_built' => 'nullable|string|max:4',
             'whatsapp_message' => 'nullable|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
+            'map_url' => 'nullable|url',
         ];
     }
 }

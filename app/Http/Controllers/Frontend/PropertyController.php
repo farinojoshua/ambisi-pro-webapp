@@ -22,14 +22,18 @@ class PropertyController extends Controller
             });
         }
 
-        // Filter berdasarkan tipe properti
-        if ($request->filled('property_type')) {
-            $properties->where('property_type', $request->input('property_type'));
+        // Filter berdasarkan lokasi (location)
+        if ($request->filled('location')) {
+            $properties->where('location', 'LIKE', "%{$request->input('location')}%");
         }
 
-        // Filter berdasarkan status (sewa/jual)
-        if ($request->filled('status')) {
-            $properties->where('status', $request->input('status'));
+        // Filter berdasarkan jumlah kamar tidur (bedrooms)
+        if ($request->filled('bedrooms')) {
+            if ($request->input('bedrooms') == '6+') {
+                $properties->where('bedrooms', '>=', 6);
+            } else {
+                $properties->where('bedrooms', $request->input('bedrooms'));
+            }
         }
 
         // Filter berdasarkan jumlah kamar tidur
@@ -63,12 +67,6 @@ class PropertyController extends Controller
             $properties->whereBetween('year_built', [trim($yearBuilt[0]), trim($yearBuilt[1])]);
         }
 
-        // Filter berdasarkan fitur-fitur properti
-        if ($request->filled('features')) {
-            foreach ($request->input('features') as $feature) {
-                $properties->whereJsonContains('facilities', $feature);
-            }
-        }
 
         // Urutkan berdasarkan pilihan pengguna
         if ($request->filled('sort')) {

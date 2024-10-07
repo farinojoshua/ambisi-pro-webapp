@@ -140,308 +140,98 @@
       </section>
       <!--Main Slider End-->
 
-      <!--Start Property Serach Form Area-->
-      <section class="property-search-form-area">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-12">
-              <div class="search-form-tab-box">
-                <div class="search-form-tab__button">
-                  <ul class="clearfix tabs-button-box">
-                    <li data-tab="#sell" class="tab-btn-item">
-                      <h3>Sell</h3>
-                    </li>
-                    <li data-tab="#rent" class="tab-btn-item active-btn-item">
-                      <h3>Rent</h3>
-                    </li>
-                    <li data-tab="#buy" class="tab-btn-item">
-                      <h3>Buy</h3>
-                    </li>
-                  </ul>
+        <!--Start Property Search Form Area-->
+        <section class="property-search-form-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="search-form-tab-box">
+                            <!-- Hanya Tab "Buy" yang diaktifkan -->
+                            <div class="search-form-tab__button">
+                                <ul class="clearfix tabs-button-box">
+                                    <li data-tab="#buy" class="tab-btn-item active-btn-item">
+                                        <h3>Buy</h3>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="search-form-tabs-content-box-outer">
+                                <div class="tabs-content-box">
+                                    <!--Tab untuk Buy (Hanya yang ini diaktifkan)-->
+                                    <div class="tab-content-box-item tab-content-box-item-active" id="buy">
+                                        <div class="clearfix search-form-tab-content-box-item">
+                                            <form action="{{ route('properties.index') }}" method="GET" class="clearfix search-form">
+                                                <ul class="clearfix">
+                                                    <!-- Lokasi -->
+                                                    <li>
+                                                        <div class="clearfix form-group">
+                                                            <label>Your Location</label>
+                                                            <div class="field-input">
+                                                                <input type="text" name="location" placeholder="Enter Location">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <!-- Kamar Tidur -->
+                                                    <li>
+                                                        <div class="clearfix form-group">
+                                                            <label>Bed/Bathrooms</label>
+                                                            <div class="field-input">
+                                                                <div class="select-box">
+                                                                    <select name="bedrooms" class="wide">
+                                                                        <option value="">00 Bed / 00 Bathrooms</option>
+                                                                        <option value="1">1 Bed / 1 Bath</option>
+                                                                        <option value="2">2 Bed / 1 Bath</option>
+                                                                        <option value="3">3 Bed / 2 Bath</option>
+                                                                        <option value="4">4 Bed / 3 Bath</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <!-- Kata Kunci -->
+                                                    <li>
+                                                        <div class="clearfix form-group">
+                                                            <label>Search</label>
+                                                            <div class="field-input">
+                                                                <input name="keywords" placeholder="Enter Keywords" type="text">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <!-- Year Built -->
+                                                    <li>
+                                                        <div class="clearfix form-group">
+                                                            <label>Year Built</label>
+                                                            <div class="field-input">
+                                                                <input type="text" name="year_built" placeholder="e.g. 2000 - 2020">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <!-- Tombol Pencarian -->
+                                                    <li>
+                                                        <div class="btn-box">
+                                                            <button class="btn-one" type="submit">
+                                                                <span class="txt">Search Home <i class="icon-plus-sign"></i></span>
+                                                            </button>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--Tab lain (Rent & Sell) dihilangkan agar tidak terlihat-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="search-form-tabs-content-box-outer">
-                  <div class="tabs-content-box">
-                    <!--Tab-->
-                    <div class="tab-content-box-item" id="sell">
-                      <div class="clearfix search-form-tab-content-box-item">
-                        <form action="{{ route('properties.index') }}" method="GET" class="clearfix search-form">
-                            <ul class="clearfix">
-                                <li>
-                                    <div class="clearfix form-group">
-                                        <label>Type</label>
-                                        <div class="field-input">
-                                            <div class="select-box">
-                                                <select name="property_type" class="wide">
-                                                    <option value="" selected>Property Type</option>
-                                                    <option value="Apartment">Apartment</option>
-                                                    <option value="House">House</option>
-                                                    <option value="Office">Office</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="clearfix form-group">
-                                        <label>Your Location</label>
-                                        <div class="field-input">
-                                            <input type="text" name="location" placeholder="Enter Location">
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="clearfix form-group">
-                                        <label>Bed/Bathrooms</label>
-                                        <div class="field-input">
-                                            <div class="select-box">
-                                                <select name="bedrooms" class="wide">
-                                                    <option value="">00 Bed / 00 Bathrooms</option>
-                                                    <option value="1">1 Bed / 1 Bath</option>
-                                                    <option value="2">2 Bed / 1 Bath</option>
-                                                    <option value="3">3 Bed / 2 Bath</option>
-                                                    <option value="4">4 Bed / 3 Bath</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="clearfix form-group">
-                                        <label>Search</label>
-                                        <div class="field-input">
-                                            <input name="keywords" placeholder="Enter Keywords" type="text">
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="btn-box">
-                                        <button class="btn-one" type="submit">
-                                            <span class="txt">Search Home <i class="icon-plus-sign"></i></span>
-                                        </button>
-                                    </div>
-                                </li>
-                            </ul>
-                        </form>
-                      </div>
-                    </div>
-
-                    <!--Tab-->
-                    <div
-                      class="tab-content-box-item tab-content-box-item-active"
-                      id="rent"
-                    >
-                      <div class="clearfix search-form-tab-content-box-item">
-                        <form
-                          action="index.html"
-                          method="post"
-                          class="clearfix search-form"
-                        >
-                          <ul class="clearfix">
-                            <li>
-                              <div class="clearfix form-group">
-                                <label>Type</label>
-                                <div class="field-input">
-                                  <div class="select-box">
-                                    <select class="wide">
-                                      <option data-display="Property Type">
-                                        Property Type
-                                      </option>
-                                      <option value="1">Laxury</option>
-                                      <option value="2">Classic</option>
-                                      <option value="3">Modern</option>
-                                      <option value="4">New</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="clearfix form-group">
-                                <label>Your Location</label>
-                                <div class="field-input">
-                                  <div class="select-box">
-                                    <select class="wide">
-                                      <option data-display="Your Location">
-                                        Your Location
-                                      </option>
-                                      <option value="1">New York</option>
-                                      <option value="2">California</option>
-                                      <option value="3">London</option>
-                                      <option value="4">Maxico</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="clearfix form-group">
-                                <label>Bed/Bathrooms</label>
-                                <div class="field-input">
-                                  <div class="select-box">
-                                    <select class="wide">
-                                      <option
-                                        data-display="00 Bed / 00 Bathrooms"
-                                      >
-                                        00 Bed / 00 Bathrooms
-                                      </option>
-                                      <option value="1">
-                                        05 Bed / 02 Bathrooms
-                                      </option>
-                                      <option value="2">
-                                        02 Bed / 01 Bathrooms
-                                      </option>
-                                      <option value="3">
-                                        07 Bed / 03 Bathrooms
-                                      </option>
-                                      <option value="4">
-                                        01 Bed / 01 Bathrooms
-                                      </option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="clearfix form-group">
-                                <label>Search</label>
-                                <div class="field-input">
-                                  <input
-                                    placeholder="Enter Keywords"
-                                    type="text"
-                                  />
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="btn-box">
-                                <button
-                                  class="btn-one"
-                                  type="submit"
-                                  data-loading-text="Please wait..."
-                                >
-                                  <span class="txt">
-                                    Search Home
-                                    <i class="icon-plus-sign"></i>
-                                  </span>
-                                </button>
-                              </div>
-                            </li>
-                          </ul>
-                        </form>
-                      </div>
-                    </div>
-
-                    <!--Tab-->
-                    <div class="tab-content-box-item" id="buy">
-                      <div class="clearfix search-form-tab-content-box-item">
-                        <form
-                          action="index.html"
-                          method="post"
-                          class="clearfix search-form"
-                        >
-                          <ul class="clearfix">
-                            <li>
-                              <div class="clearfix form-group">
-                                <label>Type</label>
-                                <div class="field-input">
-                                  <div class="select-box">
-                                    <select class="wide">
-                                      <option data-display="Property Type">
-                                        Property Type
-                                      </option>
-                                      <option value="1">Laxury</option>
-                                      <option value="2">Classic</option>
-                                      <option value="3">Modern</option>
-                                      <option value="4">New</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="clearfix form-group">
-                                <label>Your Location</label>
-                                <div class="field-input">
-                                  <div class="select-box">
-                                    <select class="wide">
-                                      <option data-display="Your Location">
-                                        Your Location
-                                      </option>
-                                      <option value="1">New York</option>
-                                      <option value="2">California</option>
-                                      <option value="3">London</option>
-                                      <option value="4">Maxico</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="clearfix form-group">
-                                <label>Bed/Bathrooms</label>
-                                <div class="field-input">
-                                  <div class="select-box">
-                                    <select class="wide">
-                                      <option
-                                        data-display="00 Bed / 00 Bathrooms"
-                                      >
-                                        00 Bed / 00 Bathrooms
-                                      </option>
-                                      <option value="1">
-                                        05 Bed / 02 Bathrooms
-                                      </option>
-                                      <option value="2">
-                                        02 Bed / 01 Bathrooms
-                                      </option>
-                                      <option value="3">
-                                        07 Bed / 03 Bathrooms
-                                      </option>
-                                      <option value="4">
-                                        01 Bed / 01 Bathrooms
-                                      </option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="clearfix form-group">
-                                <label>Search</label>
-                                <div class="field-input">
-                                  <input
-                                    placeholder="Enter Keywords"
-                                    type="text"
-                                  />
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="btn-box">
-                                <button
-                                  class="btn-one"
-                                  type="submit"
-                                  data-loading-text="Please wait..."
-                                >
-                                  <span class="txt">
-                                    Search Home
-                                    <i class="icon-plus-sign"></i>
-                                  </span>
-                                </button>
-                              </div>
-                            </li>
-                          </ul>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <!--End Property Serach Form Area-->
+        </section>
+        <!--End Property Search Form Area-->
+
 
         <!--Start properties Style2 Area-->
         <section class="properties-style2-area">
@@ -455,11 +245,24 @@
                 <div class="row">
                     @foreach($properties as $property)
                     <!--Start Single Properties Box style1-->
+                    <!--Start Single Properties Box style1-->
+                    <!--Start Single Properties Box style1-->
                     <div class="col-xl-4">
                         <div class="single-properties-box-style1">
-                            <div class="img-holder">
-                                <img src="{{ asset('storage/' . $property->photo_url) }}" alt="{{ $property->name }}">
+                            <!-- Carousel Container -->
+                            <div class="img-holder swiper-container property-swiper-{{ $property->property_id }}">
+                                <div class="swiper-wrapper">
+                                    @foreach (json_decode($property->photos) as $photo)
+                                        <div class="swiper-slide">
+                                            <img src="{{ asset('storage/' . $photo) }}" alt="{{ $property->name }}" class="rounded img-fluid">
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <!-- Optional Navigation Buttons -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
                             </div>
+
                             <div class="text-holder">
                                 <div class="top">
                                     <div class="dot"></div>
@@ -472,21 +275,11 @@
                                 <div class="rating-value-box">
                                     <div class="rating-box">
                                         <ul>
-                                            <li>
-                                                <span class="icon-star"></span>
-                                            </li>
-                                            <li>
-                                                <span class="icon-star"></span>
-                                            </li>
-                                            <li>
-                                                <span class="icon-star"></span>
-                                            </li>
-                                            <li>
-                                                <span class="icon-star"></span>
-                                            </li>
-                                            <li>
-                                                <span class="icon-star-1"></span>
-                                            </li>
+                                            <li><span class="icon-star"></span></li>
+                                            <li><span class="icon-star"></span></li>
+                                            <li><span class="icon-star"></span></li>
+                                            <li><span class="icon-star"></span></li>
+                                            <li><span class="icon-star-1"></span></li>
                                         </ul>
                                         <span class="text">(5.4)</span>
                                     </div>
@@ -504,6 +297,10 @@
                             </div>
                         </div>
                     </div>
+                    <!--End Single Properties Box style1-->
+
+                    <!--End Single Properties Box style1-->
+
                     <!--End Single Properties Box style1-->
                     @endforeach
                 </div>
@@ -893,3 +690,38 @@
         </section>
         <!--End Testimonial Style1 Area-->
 @endsection
+
+@push('scripts')
+<script>
+    // Initialize Swiper for each property
+// Initialize Swiper for each property
+// Initialize Swiper for each property
+document.addEventListener('DOMContentLoaded', function () {
+    @foreach($properties as $property)
+        new Swiper('.property-swiper-{{ $property->property_id }}', {
+            loop: true,
+            autoplay: {
+                delay: 3000, // Set the delay in milliseconds (3000ms = 3 seconds)
+                disableOnInteraction: false, // Autoplay will not be disabled after interaction
+            },
+            effect: 'coverflow',
+            coverflowEffect: {
+                rotate: 30, // Rotation angle of slides
+                stretch: 10, // Space between slides
+                depth: 100, // Slide depth effect
+                modifier: 1, // Effect multiplier
+                slideShadows: true, // Enables slide shadows
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    @endforeach
+});
+
+
+</script>
+
+
+@endpush

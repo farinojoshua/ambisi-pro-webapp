@@ -29,9 +29,17 @@
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->location }}</dd>
                         </div>
                         <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Photo</dt>
+                            <dt class="text-sm font-medium text-gray-500">Photos</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
-                                <img src="{{ Storage::url($property->photo_url) }}" alt="{{ $property->name }}" class="h-auto max-w-full">
+                                @if($property->photos)
+                                    <div class="flex flex-wrap gap-4">
+                                        @foreach(json_decode($property->photos) as $photo)
+                                            <img src="{{ Storage::url($photo) }}" alt="{{ $property->name }}" class="h-auto max-w-xs mt-2 rounded">
+                                        @endforeach
+                                    </div>
+                                @else
+                                    N/A
+                                @endif
                             </dd>
                         </div>
                         <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -82,12 +90,13 @@
                             <dt class="text-sm font-medium text-gray-500">Living Room</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $property->living_room ?? 'N/A' }}</dd>
                         </div>
+                        <!-- Facilities -->
                         <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Facilities</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
                                 @if($property->facilities)
                                     <ul class="pl-5 list-disc">
-                                        @foreach(json_decode($property->facilities) as $facility)
+                                        @foreach($property->facilities as $facility)
                                             <li>{{ $facility }}</li>
                                         @endforeach
                                     </ul>
@@ -96,12 +105,13 @@
                                 @endif
                             </dd>
                         </div>
+                        <!-- Nearby Locations -->
                         <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Nearby Locations</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
                                 @if($property->nearby_locations)
                                     <ul class="pl-5 list-disc">
-                                        @foreach(json_decode($property->nearby_locations) as $location)
+                                        @foreach($property->nearby_locations as $location)
                                             <li>{{ $location }}</li>
                                         @endforeach
                                     </ul>

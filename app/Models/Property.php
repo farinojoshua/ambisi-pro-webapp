@@ -21,7 +21,7 @@ class Property extends Model
         'name',
         'description',
         'location',
-        'photo_url',
+        'photos',
         'bedrooms',
         'bathrooms',
         'land_area',
@@ -43,7 +43,8 @@ class Property extends Model
         'created_by',
         'updated_by',
         'deleted_by',
-        'status'
+        'status',
+        'map_url',
     ];
 
     protected $casts = [

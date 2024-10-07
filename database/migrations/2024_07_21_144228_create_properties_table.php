@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('location');
-            $table->string('photo_url');
+            $table->json('photos');
             $table->integer('bedrooms');
             $table->integer('bathrooms');
             $table->decimal('land_area', 10, 2);
@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('updated_by');
             $table->string('deleted_by')->nullable();
             $table->string('status')->default('ACTIVE');
+            $table->text('map_url')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

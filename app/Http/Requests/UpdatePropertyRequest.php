@@ -18,7 +18,7 @@ class UpdatePropertyRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'location' => 'required|string|max:255',
-            'photo_url' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Allow multiple photo uploads
             'bedrooms' => 'required|integer|min:0',
             'bathrooms' => 'required|integer|min:0',
             'land_area' => 'required|numeric|min:0',
@@ -40,6 +40,7 @@ class UpdatePropertyRequest extends FormRequest
             'year_built' => 'nullable|string|max:4',
             'whatsapp_message' => 'nullable|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
+            'map_url' => 'nullable|url',
         ];
     }
 }

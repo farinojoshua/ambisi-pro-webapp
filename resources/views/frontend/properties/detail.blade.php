@@ -3,15 +3,37 @@
 @section('title', $property->name)
 
 @section('content')
-    <!--Start Property Details Image Box-->
     <section class="property-details-img-box">
         <div class="container">
             <div class="property-details-img-box-inner">
-                <div class="property-details-img-bg" style="background-image: url({{ asset('storage/' . $property->photo_url) }});"></div>
+                @php
+                    $photos = json_decode($property->photos);
+                @endphp
+                @if ($photos && count($photos) > 0)
+                    <!-- Display Main Photo -->
+                    <div id="main-photo" class="mb-4">
+                        <img src="{{ asset('storage/' . $photos[0]) }}" alt="{{ $property->name }}" class="rounded img-fluid w-100" id="largeImage">
+                    </div>
+
+                    <!-- Display Thumbnails -->
+                    <div class="row">
+                        @foreach ($photos as $photo)
+                            <div class="col-3">
+                                <img
+                                    src="{{ asset('storage/' . $photo) }}"
+                                    alt="{{ $property->name }}"
+                                    class="rounded img-fluid thumbnail-img"
+                                    style="cursor: pointer;"
+                                    onclick="changeMainPhoto('{{ asset('storage/' . $photo) }}')">
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <p>No photos available.</p>
+                @endif
             </div>
         </div>
     </section>
-    <!--End Property Details Image Box-->
 
     <!--Start Property Details Area-->
     <section class="property-details-area">
@@ -36,10 +58,15 @@
                         <h3><strong>Rp{{ number_format($property->price, 0, ',', '.') }}</strong></h3>
                     </div>
                 </div>
-                <a href="https://wa.me/628138523432?text={{ urlencode('Halo, saya tertarik dengan properti ' . $property->name . ' yang berlokasi di ' . $property->location . ' dengan harga Rp' . number_format($property->price, 0, ',', '.') . '. Apakah masih tersedia?') }}"
-                   class="btn-one btn-whatsapp" target="_blank">
-                    <span class="txt">Chat di WhatsApp<i class="icon-plus-sign"></i></span>
-                </a>
+                <div class="btn-box">
+                    <a href="https://wa.me/628138523432?text={{ urlencode('Halo, saya tertarik dengan properti ' . $property->name . ' yang berlokasi di ' . $property->location . ' dengan harga Rp' . number_format($property->price, 0, ',', '.') . '. Apakah masih tersedia?') }}"
+                       class="btn-one btn-whatsapp" target="_blank">
+                        <span class="txt">
+                            Chat di WhatsApp
+                            <i class="icon-plus-sign"></i>
+                        </span>
+                    </a>
+                </div>
             </div>
             <div class="row">
                 <!--Start Property Details Content-->
@@ -81,17 +108,19 @@
                             </div>
                         </div>
 
+                        <!-- Facilities Section -->
                         @if($property->facilities)
-                        <div class="mb-5 sidebar-features-box">
+                        <div class="mt-5 mb-5 sidebar-facilities-box">
                             <div class="inner-title">
-                                <h5>Features</h5>
+                                <h5>Facilities</h5>
                             </div>
-                            <div class="row">
-                                @foreach(json_decode($property->facilities) as $facility)
+                            <div class="mt-3 row">
+                                @foreach($property->facilities as $facility)
                                 <div class="col-xl-4">
-                                    <div class="checkboxes">
-                                        <input id="check-{{ $loop->index }}" type="checkbox" name="check" checked>
-                                        <label for="check-{{ $loop->index }}">{{ $facility }}</label>
+                                    <div class="gap-2 facility-item d-flex align-items-center">
+                                        <!-- Font Awesome Check Icon -->
+                                        <i class="mr-2 fas fa-check-circle text-success"></i>
+                                        <span>{{ $facility }}</span>
                                     </div>
                                 </div>
                                 @endforeach
@@ -99,15 +128,52 @@
                         </div>
                         @endif
 
-                        <div class="property-details-location-box">
+                        <!-- Nearby Locations Section -->
+                        @if($property->nearby_locations)
+                        <div class="mb-5 sidebar-nearby-box">
+                            <div class="inner-title">
+                                <h5>Nearby Locations</h5>
+                            </div>
+                            <div class="mt-3 row">
+                                @foreach($property->nearby_locations as $location)
+                                <div class="col-xl-4">
+                                    <div class="nearby-item">
+                                        <span>{{ $location }}</span>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+
+                        <!-- Video Section -->
+                        @if($property->video_url)
+                        <div class="mt-4 property-video">
+                            <h5>Video</h5>
+                            <div class="mt-4 map-box">
+                                <iframe class="property-details-location-map"
+                                        src="{{ str_replace('watch?v=', 'embed/', $property->video_url) }}"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                        @endif
+
+
+                        <div class="mt-5 property-details-location-box">
                             <div class="inner-title">
                                 <h5>Location</h5>
                                 <p>{{ $property->location }}</p>
                             </div>
                             <div class="map-box">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4562.753041141002!2d-118.80123790098536!3d34.152323469614075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e82469c2162619%3A0xba03efb7998eef6d!2sCostco+Wholesale!5e0!3m2!1sbn!2sbd!4v1562518641290!5m2!1sbn!2sbd"
-                                    class="property-details-location-map" allowfullscreen></iframe>
+                                @if($property->map_url)
+                                    <iframe
+                                        src="{{ $property->map_url }}"
+                                        class="property-details-location-map" allowfullscreen>
+                                    </iframe>
+                                @else
+                                    <p>No map available.</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -147,3 +213,11 @@
     </section>
     <!--End Property Details Area-->
 @endsection
+
+@push('scripts')
+    <script>
+    function changeMainPhoto(newSrc) {
+        document.getElementById('largeImage').src = newSrc;
+    }
+    </script>
+@endpush
